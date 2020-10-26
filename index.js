@@ -59,13 +59,13 @@ app.use((error, req, res, next) => {
 
 //server statuc assets if in production
 if (process.env.NODE_ENV !== 'development') {
-  const root = path.join(__dirname,'dist');
+  const root = path.join(__dirname, 'dist');
   app.use(express.static(root));
   app.get('*', (req, res) => {
-    res.sendFile('index.html', root);
+    res.sendFile('index.html', { root: root });
   });
 }
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
